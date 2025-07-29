@@ -4,14 +4,18 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
 import App from './App.jsx'
-import HomePage from './Pages/HomePage.jsx';
+import Dashboard from './Pages/Dashboard.jsx';
+import LeadManagement from './Pages/LeadManagement.jsx';
+import LeadList from './Pages/LeadList.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      { path: '/', element: <HomePage /> }
+      { path: '/', element: <Dashboard /> },
+       { path: '/lead/:id', element: <LeadManagement /> },
+        { path: '/leads', element: <LeadList /> }
 
 
     ]
