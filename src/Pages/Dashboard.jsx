@@ -28,7 +28,7 @@ export default function Dashboard() {
       <main >
         <div className="d-flex" style={{ height: "100%" }}>
        
-          <div className="bg-light p-3 border-end" style={{ width: "230px" }}>
+          <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
             <Sidebar />
           </div>
 
