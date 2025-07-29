@@ -17,7 +17,7 @@ const getEmptyLead = () =>
   Object.fromEntries(leadFields.map(({ name }) => [name, ""]));
 
 const LeadForm = ({ mode = "add", initialValues = null, onClose }) => {
-  const { addLead, updateLead, agentOptions, tagOptions } = useLeadContext();
+  const { addLead, updateLead, agentOptions, tagOptions, statusOptions } = useLeadContext();
   const [formState, setFormState] = useState(getEmptyLead());
   const firstInputRef = useRef();
 
@@ -97,7 +97,7 @@ const LeadForm = ({ mode = "add", initialValues = null, onClose }) => {
             <option value="">{placeholder}</option>
 
             {name === "status" &&
-              ["New", "Contacted", "Qualified", "Lost"].map((opt) => (
+              statusOptions.map((opt) => (
                 <option key={opt} value={opt}>
                   {opt}
                 </option>

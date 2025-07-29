@@ -124,14 +124,23 @@ const [filteredLeads, setFilteredLeads] = useState([]);
     }
   };
 
+const statusCounts = useMemo(() => {
+  const counts = {};
+  allLeads.forEach((lead) => {
+    const status = lead.status || "Unknown";
+    counts[status] = (counts[status] || 0) + 1;
+  });
+  return counts;
+}, [allLeads]);
 
-  const statusCounts = useMemo(() => {
-    const counts = {};
-    allLeads.forEach((lead) => {
-      counts[lead.status] = (counts[lead.status] || 0) + 1;
-    });
-    return counts;
-  }, [allLeads]);
+
+const statusOptions = useMemo(() => [
+  "New",
+  "Contacted",
+  "Qualified",
+  "Proposal Sent",
+  "Closed"
+], []);
 
 
 const tagOptions = useMemo(() => {
@@ -209,6 +218,7 @@ const submitComment = async (leadId, commentText) => {
         updateLead,
         salesAgents,
         statusCounts,
+        statusOptions,
         tagOptions,
         agentOptions,
         fetchComments,

@@ -6,7 +6,7 @@ import Sidebar from '../Components/Sidebar';
 import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
-  const {filteredLeads, fetchLeadsByStatus, loading,  statusCounts } = useLeadContext();
+  const {filteredLeads, fetchLeadsByStatus, loading,  statusCounts, statusOptions } = useLeadContext();
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState("add");
   const [selectedStatus, setSelectedStatus] = useState("");
@@ -81,8 +81,8 @@ export default function Dashboard() {
 
                 <p className="mt-3 mb-2 text-start">Quick Filters:</p>
                 <div className="d-flex flex-wrap gap-3">
-                  {["New", "Contacted", "Qualified", "Proposal Sent", "Closed"].map((status) => (
-                    <div key={status} className="form-check form-check-inline">
+                  {statusOptions.map((status) => (
+                    <div key={status.value} className="form-check form-check-inline">
                       <input
                         className="form-check-input"
                         type="radio"

@@ -21,9 +21,12 @@ export default function LeadList() {
     leads = leads.filter((lead) => lead.status === statusFilter);
   }
 
-  if (agentFilter) {
-    leads = leads.filter((lead) => lead.salesAgent?.name === agentFilter);
-  }
+ if (agentFilter) {
+  leads = leads.filter((lead) =>
+    lead.salesAgent?.some((agent) => agent.name === agentFilter)
+  );
+}
+
 
   if (sortOption === "priority") {
     leads.sort((a, b) => a.priority.localeCompare(b.priority));
@@ -56,30 +59,32 @@ export default function LeadList() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="d-flex gap-3">
                   <select
-                    className="form-select w-auto"
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                  >
-                    <option value="">Filter by Status</option>
-                    {statusOptions.map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
+  className="form-select w-auto"
+  value={statusFilter}
+  onChange={(e) => setStatusFilter(e.target.value)}
+>
+  <option value="">Filter by Status</option>
+  {statusOptions?.map((status) => (
+    <option key={status} value={status}>
+      {status}
+    </option>
+  ))}
+</select>
 
-                  <select
-                    className="form-select w-auto"
-                    value={agentFilter}
-                    onChange={(e) => setAgentFilter(e.target.value)}
-                  >
-                    <option value="">Filter by Sales Agent</option>
-                    {agentOptions.map((agent) => (
-                      <option key={agent} value={agent}>
-                        {agent}
-                      </option>
-                    ))}
-                  </select>
+
+                 <select
+  className="form-select w-auto"
+  value={agentFilter}
+  onChange={(e) => setAgentFilter(e.target.value)}
+>
+  <option value="">Filter by Sales Agent</option>
+  {agentOptions?.map((agent) => (
+    <option key={agent.value} value={agent.label}>
+      {agent.label}
+    </option>
+  ))}
+</select>
+
 
                   <select
                     className="form-select"
@@ -121,7 +126,7 @@ export default function LeadList() {
         </tr>
       </thead>
       <tbody>
-        {filteredLeads.map((lead) => (
+        {filteredLeads?.map((lead) => (
           <tr
             key={lead._id}
             style={{ cursor: "pointer" }}
@@ -142,7 +147,11 @@ export default function LeadList() {
                 {lead.priority}
               </span>
             </td>
-            <td>{lead.salesAgent?.name || "Unassigned"}</td>
+            <td>
+  {lead.salesAgent?.length > 0
+    ? lead.salesAgent.map((agent) => agent.name).join(", ")
+    : "Unassigned"}
+</td>
             <td>{lead.timeToClose} days</td>
             <td>
               {lead.tags?.map((tag, index) => (
