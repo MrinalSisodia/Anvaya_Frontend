@@ -49,6 +49,7 @@ export default function LeadList() {
        
           <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
             <p className="nav-item">
+                 <i className="bi bi-arrow-left me-2"></i>
               <Link className="nav-link" to="/">Back to Dashboard</Link>
             </p>
           </div>
