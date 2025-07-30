@@ -20,6 +20,7 @@ export default function LeadManagement() {
   const [modalMode, setModalMode] = useState("");
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [selectedAgentId, setSelectedAgentId] = useState("");
 
 
   useEffect(() => {
@@ -46,21 +47,29 @@ export default function LeadManagement() {
     }
   }, [lead]);
 
+
+
 const handleCommentSubmit = async () => {
+  if (!selectedAgentId) {
+    toast.error("Please select an agent to post the comment.");
+    return;
+  }
+
   if (lead && newComment.trim()) {
     try {
-      console.log("Sending comment:", newComment.trim());
-      const updatedComments = await submitComment(lead._id, newComment.trim());
+      await submitComment(lead._id, newComment.trim(), selectedAgentId);
+      const updatedComments = await fetchComments(lead._id);  // refresh the list
       setComments(updatedComments || []);
       setNewComment("");
-      
+      setSelectedAgentId("");
       toast.success("Comment posted successfully!");
     } catch (error) {
       console.error("Error submitting comment:", error);
-       toast.error("Failed to post comment.");
+      toast.error("Failed to post comment.");
     }
   }
 };
+
 
 
   return (
@@ -124,6 +133,21 @@ const handleCommentSubmit = async () => {
                 )}
 
                 <div className="mt-3">
+                  {Array.isArray(lead?.salesAgent) && (
+  <select
+    className="form-select mb-2"
+    value={selectedAgentId}
+    onChange={(e) => setSelectedAgentId(e.target.value)}
+  >
+    <option value="">Select Sales Agent</option>
+    {lead.salesAgent.map((agent) => (
+      <option key={agent._id} value={agent._id}>
+        {agent.name}
+      </option>
+    ))}
+  </select>
+)}
+  
                   <textarea
                     className="form-control mb-2"
                     rows={3}

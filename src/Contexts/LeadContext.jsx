@@ -173,14 +173,15 @@ const agentOptions = useMemo(() => {
     }
   };
 
-const submitComment = async (leadId, commentText) => {
+const submitComment = async (leadId, commentText, agentId) => {
   try {
     const res = await fetch(`${BASE_URL}/leads/${leadId}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ commentText }),
+      body: JSON.stringify({ commentText, agentId }),
+  
     });
 
     if (!res.ok) throw new Error("Failed to submit comment");
@@ -192,6 +193,7 @@ const submitComment = async (leadId, commentText) => {
     throw error;
   }
 };
+
 
 
 
