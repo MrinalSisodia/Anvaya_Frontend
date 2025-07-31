@@ -7,6 +7,7 @@ import App from './App.jsx'
 import Dashboard from './Pages/Dashboard.jsx';
 import LeadManagement from './Pages/LeadManagement.jsx';
 import LeadList from './Pages/LeadList.jsx';
+import SalesAgentManagement from './Pages/SalesAGentManagement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -15,9 +16,8 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Dashboard /> },
        { path: '/lead/:id', element: <LeadManagement /> },
-        { path: '/leads', element: <LeadList /> }
-
-
+        { path: '/leads', element: <LeadList /> },
+         { path: '/sales-agents', element: <SalesAgentManagement /> }
     ]
   }
 ]);

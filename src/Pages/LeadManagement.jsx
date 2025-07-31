@@ -78,7 +78,7 @@ const handleCommentSubmit = async () => {
 return(
 <>
   <header className="bg-primary text-light p-3 sticky-top">
-    <h1 className="fs-4">Lead Management: {lead?.name || "Loading..."}</h1>
+    <h1 className="fs-4">Lead Management: {lead?.name}</h1>
   </header>
 
   <main className="d-flex" style={{ height: "calc(100vh - 56px)" }}>

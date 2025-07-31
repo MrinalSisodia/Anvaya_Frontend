@@ -13,7 +13,7 @@ const Sidebar = () => {
           <Link className="nav-link" to="/sales">Sales</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/agents">Agents</Link>
+          <Link className="nav-link" to="/sales-agents">Agents</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/reports">Reports</Link>

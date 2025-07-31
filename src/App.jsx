@@ -9,10 +9,12 @@ import LeadContextProvider from './Contexts/LeadContext';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AgentProvider } from './Contexts/AgentContext';
 
 function App() {
   return (
     <div>
+      <AgentProvider>
       <LeadContextProvider>
       
       
@@ -34,6 +36,7 @@ function App() {
                   <Outlet />
                 </main>
                 </LeadContextProvider>
+                </AgentProvider>
               
     </div>
   );
