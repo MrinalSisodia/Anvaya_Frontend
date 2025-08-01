@@ -7,7 +7,7 @@ import App from './App.jsx'
 import Dashboard from './Pages/Dashboard.jsx';
 import LeadManagement from './Pages/LeadManagement.jsx';
 import LeadList from './Pages/LeadList.jsx';
-import SalesAgentManagement from './Pages/SalesAGentManagement.jsx';
+import SalesAgentManagement from "./Pages/SalesAgentManagement.jsx";
 
 const router = createBrowserRouter([
   {
