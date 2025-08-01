@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
 const AgentContext = createContext();
 
@@ -20,6 +20,13 @@ export const AgentProvider = ({ children }) => {
     }
   };
 
+const agentOptions = useMemo(() => {
+  return agents.map((agent) => ({
+    value: agent._id,
+    label: agent.name,
+  }));
+}, [agents]);
+
   const addAgent = async (agentData) => {
     const res = await fetch("https://anvaya-backend-nine.vercel.app/sales-agents", {
       method: "POST",
@@ -35,12 +42,13 @@ export const AgentProvider = ({ children }) => {
     await fetchAgents(); // Refresh list after adding
   };
 
+  
   useEffect(() => {
     fetchAgents();
   }, []);
 
   return (
-    <AgentContext.Provider value={{ agents, loading, fetchAgents, addAgent }}>
+    <AgentContext.Provider value={{ agents, loading, fetchAgents, addAgent, agentOptions }}>
       {children}
     </AgentContext.Provider>
   );

@@ -6,7 +6,7 @@ import { useAgentContext } from "../Contexts/AgentContext";
 
 const SalesAgentManagement = () => {
   const [showForm, setShowForm] = useState(false);
-  const { agents, loading, fetchAgents } = useAgentContext(); // use context values directly
+  const { agents, loading, fetchAgents } = useAgentContext(); 
 
   return (
     <>

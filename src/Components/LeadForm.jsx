@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLeadContext } from "../Contexts/LeadContext";
+import { useAgentContext } from "../Contexts/AgentContext";
 import { toast } from "react-toastify";
 import Select from "react-select";
 
@@ -17,7 +18,8 @@ const getEmptyLead = () =>
   Object.fromEntries(leadFields.map(({ name }) => [name, ""]));
 
 const LeadForm = ({ mode = "add", initialValues = null, onClose }) => {
-  const { addLead, updateLead, agentOptions, tagOptions, statusOptions } = useLeadContext();
+  const { addLead, updateLead, tagOptions, statusOptions } = useLeadContext();
+  const {agentOptions} = useAgentContext()
   const [formState, setFormState] = useState(getEmptyLead());
   const firstInputRef = useRef();
 

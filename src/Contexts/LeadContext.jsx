@@ -7,21 +7,11 @@ const LeadContextProvider = ({ children }) => {
 const [allLeads, setAllLeads] = useState([]);
 const [filteredLeads, setFilteredLeads] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [salesAgents, setSalesAgents] = useState([]);
   const [tags, setTags] = useState([]);
 
   const BASE_URL = "https://anvaya-backend-nine.vercel.app";
 
-  const fetchSalesAgents = async () => {
-    try {
-      const res = await fetch(`${BASE_URL}/sales-agents`);
-      const data = await res.json();
-      if (!res.ok) throw new Error("Failed to fetch agents");
-      setSalesAgents(data);
-    } catch (err) {
-      console.error("Fetch sales agents error:", err);
-    }
-  };
+
   const fetchTags = async () => {
   try {
     const res = await fetch(`${BASE_URL}/tags`);
@@ -35,7 +25,6 @@ const [filteredLeads, setFilteredLeads] = useState([]);
 
 
   useEffect(() => {
-    fetchSalesAgents();
      fetchTags();
   }, []);
 
@@ -151,13 +140,6 @@ const tagOptions = useMemo(() => {
 }, [tags]);
 
 
-const agentOptions = useMemo(() => {
-  return salesAgents.map(agent => ({
-    value: agent._id,
-    label: agent.name,
-  }));
-}, [salesAgents]);
-
 
 
 
@@ -201,35 +183,34 @@ const submitComment = async (leadId, commentText, agentId) => {
   const getLeadsByStatus = (status) =>
     allLeads.filter((lead) => lead.status === status);
 
-  const getLeadsByAgent = (agentName) =>
-    allLeads.filter((lead) => lead.salesAgent?.name === agentName);
+const getLeadsByAgent = (agentId) =>
+  allLeads.filter((lead) => lead.salesAgent?._id === agentId);
+
 
 
   const getLeadById = (id) => allLeads.find((lead) => lead._id === id);
 
   return (
     <LeadContext.Provider
-      value={{
-        allLeads,
-        setAllLeads,
-        fetchAllLeads,
-        filteredLeads,
-        fetchLeadsByStatus,
-        loading,
-        addLead,
-        updateLead,
-        salesAgents,
-        statusCounts,
-        statusOptions,
-        tagOptions,
-        agentOptions,
-        fetchComments,
-        submitComment,
-        getLeadsByStatus,
-        getLeadsByAgent,
-        getLeadById,
-      }}
-    >
+  value={{
+    allLeads,
+    setAllLeads,
+    fetchAllLeads,
+    filteredLeads,
+    fetchLeadsByStatus,
+    loading,
+    addLead,
+    updateLead,
+    statusCounts,
+    statusOptions,
+    tagOptions,
+    fetchComments,
+    submitComment,
+    getLeadsByStatus,
+    getLeadsByAgent,
+    getLeadById,
+  }}
+>
       {children}
     </LeadContext.Provider>
   );

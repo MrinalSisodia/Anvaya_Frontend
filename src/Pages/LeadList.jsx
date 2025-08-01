@@ -1,11 +1,13 @@
 import { useLeadContext } from "../Contexts/LeadContext";
+import { useAgentContext } from "../Contexts/AgentContext";
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../Components/Modal";
 import LeadForm from "../Components/LeadForm";
 
 export default function LeadList() {
-  const { allLeads, loading, statusOptions, agentOptions } = useLeadContext();
+  const { allLeads, loading, statusOptions } = useLeadContext();
+  const {agentOptions} = useAgentContext();
   const [statusFilter, setStatusFilter] = useState("");
   const [agentFilter, setAgentFilter] = useState("");
   const [sortOption, setSortOption] = useState("");
@@ -21,9 +23,9 @@ export default function LeadList() {
     leads = leads.filter((lead) => lead.status === statusFilter);
   }
 
- if (agentFilter) {
+if (agentFilter) {
   leads = leads.filter((lead) =>
-    lead.salesAgent?.some((agent) => agent.name === agentFilter)
+    lead.salesAgent?.some((agent) => agent._id === agentFilter)
   );
 }
 
@@ -79,11 +81,11 @@ export default function LeadList() {
   onChange={(e) => setAgentFilter(e.target.value)}
 >
   <option value="">Filter by Sales Agent</option>
-  {agentOptions?.map((agent) => (
-    <option key={agent.value} value={agent.label}>
-      {agent.label}
-    </option>
-  ))}
+ {agentOptions?.map((agent) => (
+  <option key={agent.value} value={agent.value}>
+    {agent.label}
+  </option>
+))}
 </select>
 
 
