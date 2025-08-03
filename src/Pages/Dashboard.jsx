@@ -1,23 +1,48 @@
 import { useLeadContext } from '../Contexts/LeadContext';
 import Modal from "../Components/Modal";
 import LeadForm from "../Components/LeadForm";
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from '../Components/Sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function Dashboard() {
-  const {filteredLeads, fetchLeadsByStatus, loading,  statusCounts, statusOptions } = useLeadContext();
+  const {
+    filteredLeads,
+    fetchFilteredLeads,
+    loading,
+    statusCounts,
+    statusOptions,
+  } = useLeadContext();
+
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState("add");
-  const [selectedStatus, setSelectedStatus] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedStatus = searchParams.get("status") || "";
 
   const openAddLeadModal = () => {
     setModalMode("add");
     setIsLeadModalOpen(true);
   };
 
- 
+  // Fetch leads when status param changes
+  useEffect(() => {
+    const filters = {};
+    const status = searchParams.get("status");
+    if (status) filters.status = status;
 
+    fetchFilteredLeads(filters);
+  }, [searchParams]);
+
+  const handleStatusChange = (statusValue) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (statusValue) {
+      newParams.set("status", statusValue);
+    } else {
+      newParams.delete("status");
+    }
+    setSearchParams(newParams);
+  };
 
   return (
     <>
@@ -25,18 +50,14 @@ export default function Dashboard() {
         <h1>Anvaya CRM Dashboard</h1>
       </header>
 
-      <main >
+      <main>
         <div className="d-flex" style={{ height: "100%" }}>
-       
           <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
             <Sidebar />
           </div>
 
-          
           <div className="flex-grow-1 overflow-auto p-4 bg-light">
             <div className="container-fluid">
-              
-        
               <div
                 className="mb-4 p-3 bg-white rounded shadow-sm border"
                 style={{ height: "250px", overflowY: "auto" }}
@@ -44,22 +65,24 @@ export default function Dashboard() {
                 <h2 className="h5 mb-3">All Leads</h2>
                 <div className="d-flex flex-wrap gap-2">
                   {loading ? (
-  <div className="text-center my-4">
-   
-      <span >Loading Leads...</span>
-
-  </div>
-) : (filteredLeads && filteredLeads.map((lead) => (
-                    <div
-                      key={lead._id}
-                      className="border rounded p-2 shadow-sm bg-light"
-                      style={{ width: "180px", fontSize: "0.9rem" }}
-                    >
-                         <Link to={`/lead/${lead._id}`} className="text-decoration-none text-dark">
-                      <strong>{lead.name}</strong><br />
-                      <small className="text-muted">{lead.status}</small></Link>
+                    <div className="text-center my-4">
+                      <span>Loading Leads...</span>
                     </div>
-                  )))}
+                  ) : (
+                    filteredLeads.map((lead) => (
+                      <div
+                        key={lead._id}
+                        className="border rounded p-2 shadow-sm bg-light"
+                        style={{ width: "180px", fontSize: "0.9rem" }}
+                      >
+                        <Link to={`/lead/${lead._id}`} className="text-decoration-none text-dark">
+                          <strong>{lead.name}</strong>
+                          <br />
+                          <small className="text-muted">{lead.status}</small>
+                        </Link>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -69,10 +92,7 @@ export default function Dashboard() {
                   {selectedStatus && (
                     <button
                       className="btn btn-outline-secondary btn-sm"
-                      onClick={() => {
-                        fetchLeadsByStatus("");
-                        setSelectedStatus("");
-                      }}
+                      onClick={() => handleStatusChange("")}
                     >
                       Clear Filter
                     </button>
@@ -90,10 +110,7 @@ export default function Dashboard() {
                         id={`${status}Filter`}
                         value={status}
                         checked={selectedStatus === status}
-                        onChange={(e) => {
-                          fetchLeadsByStatus(e.target.value);
-                          setSelectedStatus(e.target.value);
-                        }}
+                        onChange={(e) => handleStatusChange(e.target.value)}
                       />
                       <label className="form-check-label" htmlFor={`${status}Filter`}>
                         {status} ({statusCounts[status] || 0})
@@ -103,7 +120,6 @@ export default function Dashboard() {
                 </div>
               </div>
 
-             
               <div className="mt-3">
                 <button className="btn btn-primary" onClick={openAddLeadModal}>
                   Add New Lead
@@ -115,14 +131,8 @@ export default function Dashboard() {
       </main>
 
       {isLeadModalOpen && (
-        <Modal
-          title={"Add New Lead"}
-          onClose={() => setIsLeadModalOpen(false)}
-        >
-          <LeadForm
-            mode={modalMode}
-            onClose={() => setIsLeadModalOpen(false)}
-          />
+        <Modal title={"Add New Lead"} onClose={() => setIsLeadModalOpen(false)}>
+          <LeadForm mode={modalMode} onClose={() => setIsLeadModalOpen(false)} />
         </Modal>
       )}
     </>
