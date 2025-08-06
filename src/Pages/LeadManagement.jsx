@@ -1,9 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { useLeadContext } from "../Contexts/LeadContext";
-import Modal from "../Components/Modal";
+import { useLeadContext } from "../contexts/LeadContext";
+import Modal from "../components/Modal";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import LeadForm from "../Components/LeadForm";
+import LeadForm from "../components/LeadForm";
 
 export default function LeadManagement() {
   const { id } = useParams();

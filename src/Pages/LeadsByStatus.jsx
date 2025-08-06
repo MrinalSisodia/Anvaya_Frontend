@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { useLeadContext } from "../Contexts/LeadContext";
-import { useAgentContext } from "../Contexts/AgentContext";
+import { useLeadContext } from "../contexts/LeadContext";
+import { useAgentContext } from "../contexts/AgentContext";
 
 import { useState, useMemo } from "react";
 
