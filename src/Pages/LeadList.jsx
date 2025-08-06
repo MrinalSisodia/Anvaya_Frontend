@@ -1,5 +1,5 @@
-import { useLeadContext } from "../contexts/LeadContext";
-import { useAgentContext } from "../contexts/AgentContext";
+import { useLeadContext } from "../Contexts/LeadContext";
+import { useAgentContext } from "../Contexts/AgentContext";
 import { useState, useMemo, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Modal from "../Components/Modal";

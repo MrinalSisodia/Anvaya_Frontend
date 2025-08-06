@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import LeadForm from "../Components/LeadForm";
-import { useLeadContext } from '../contexts/LeadContext';
+import { useLeadContext } from '../Contexts/LeadContext';
 import Sidebar from '../Components/Sidebar';
 import Modal from "../Components/Modal"
 

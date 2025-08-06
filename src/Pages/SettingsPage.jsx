@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useLeadContext } from "../contexts/LeadContext";
-import { useAgentContext } from "../contexts/AgentContext";
+import { useLeadContext } from "../Contexts/LeadContext";
+import { useAgentContext } from "../Contexts/AgentContext";
 import { toast } from "react-toastify";
 
 const BASE_URL = "https://anvaya-backend-nine.vercel.app";

@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useLeadContext } from "../contexts/LeadContext";
+import { useLeadContext } from "../Contexts/LeadContext";
 import Modal from "../Components/Modal";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";

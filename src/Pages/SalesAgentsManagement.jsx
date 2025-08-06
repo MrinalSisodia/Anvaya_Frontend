@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SalesAgentForm from "../Components/SalesAgentForm";
 import { useState } from "react";
-import { useAgentContext } from "../contexts/AgentContext";
+import { useAgentContext } from "../Contexts/AgentContext";
 import Modal from "../Components/Modal"
 
 const SalesAgentManagement = () => {

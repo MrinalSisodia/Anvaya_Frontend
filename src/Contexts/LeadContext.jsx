@@ -106,7 +106,7 @@ const LeadContextProvider = ({ children }) => {
       });
       return res.data;
     } catch (err) {
-      console.error("Submit comment error:", err);
+      console.error("Submit comment error!:", err);
       throw err;
     }
   };
