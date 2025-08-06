@@ -1,9 +1,9 @@
-import { useLeadContext } from "../Contexts/LeadContext";
-import { useAgentContext } from "../Contexts/AgentContext";
+import { useLeadContext } from "../contexts/LeadContext";
+import { useAgentContext } from "../contexts/AgentContext";
 import { useState, useMemo, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import Modal from "../Components/Modal";
-import LeadForm from "../Components/LeadForm";
+import Modal from "../components/Modal";
+import LeadForm from "../components/LeadForm";
 
 export default function LeadList() {
   const { filteredLeads, fetchFilteredLeads, loading, statusOptions } = useLeadContext();

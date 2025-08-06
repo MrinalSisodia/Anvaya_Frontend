@@ -1,9 +1,10 @@
-import { useLeadContext } from '../Contexts/LeadContext';
-import Modal from "../Components/Modal";
-import LeadForm from "../Components/LeadForm";
+
 import { useState, useEffect } from 'react';
-import Sidebar from "../components/Sidebar";
 import { Link, useSearchParams } from 'react-router-dom';
+import Modal from "../components/Modal";
+import LeadForm from "../components/LeadForm";
+import { useLeadContext } from '../contexts/LeadContext';
+import Sidebar from '../components/Sidebar';
 
 export default function Dashboard() {
   const {

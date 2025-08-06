@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLeadContext } from "../Contexts/LeadContext";
-import { useAgentContext } from "../Contexts/AgentContext";
+import { useLeadContext } from "../contexts/LeadContext";
+import { useAgentContext } from "../contexts/AgentContext";
 import { toast } from "react-toastify";
 import Select from "react-select";
 
