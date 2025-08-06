@@ -1,5 +1,3 @@
-import React from "react";
-
 const Modal = ({ title, onClose, children }) => {
   const handleBackdropClick = (e) => {
     if (e.target.classList.contains("modal-backdrop-custom")) {

@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { useAgentContext } from "../Contexts/AgentContext";
-import { useLeadContext } from "../Contexts/LeadContext";
+import { useAgentContext } from "../contexts/AgentContext";
+import { useLeadContext } from "../contexts/LeadContext";
 import { useMemo, useState } from "react";
 
 const SalesAgentView = () => {

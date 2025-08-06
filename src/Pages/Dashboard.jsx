@@ -1,11 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-
 import LeadForm from "../components/LeadForm";
 import { useLeadContext } from '../contexts/LeadContext';
 import Sidebar from '../components/Sidebar';
-import Modal from '../components/Modal';
+import Modal from "../components/Modal"
 
 export default function Dashboard() {
   const {
