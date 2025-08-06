@@ -71,7 +71,7 @@ export default function Dashboard() {
                 style={{ height: "270px", overflowY: "auto" }}
               >
                 <h2 className="h5 mb-3">All Leads</h2>
-                <div className="d-flex flex-wrap gap-2">
+                <div className="d-flex flex-wrap gap-3">
                   {loading ? (
                     <div className="text-center my-4">
                       <span>Loading Leads...</span>
@@ -81,7 +81,7 @@ export default function Dashboard() {
                       <div
                         key={lead._id}
                         className="border rounded p-2 shadow-sm bg-light"
-                        style={{ width: "180px", fontSize: "0.9rem" }}
+                        style={{ width: "210px", fontSize: "0.9rem" }}
                       >
                         <Link to={`/lead/${lead._id}`} className="text-decoration-none text-dark">
                           <strong>{lead.name}</strong>
