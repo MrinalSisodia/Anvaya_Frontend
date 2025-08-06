@@ -2,7 +2,7 @@ import { useLeadContext } from '../Contexts/LeadContext';
 import Modal from "../Components/Modal";
 import LeadForm from "../Components/LeadForm";
 import { useState, useEffect } from 'react';
-import Sidebar from '../Components/Sidebar';
+import Sidebar from "../components/Sidebar";
 import { Link, useSearchParams } from 'react-router-dom';
 
 export default function Dashboard() {
@@ -51,16 +51,23 @@ export default function Dashboard() {
       </header>
 
       <main>
-        <div className="d-flex" style={{ height: "100%" }}>
-          <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
-            <Sidebar />
-          </div>
+        <div className="d-flex" style={{ minHeight: "100vh" }}>
+  <aside
+    className="bg-light p-3 border-end"
+    style={{
+      width: "200px",
+      minWidth: "200px",
+      flexShrink: 0,
+    }}
+  >
+    <Sidebar />
+  </aside>
 
           <div className="flex-grow-1 overflow-auto p-4 bg-light">
             <div className="container-fluid">
               <div
                 className="mb-4 p-3 bg-white rounded shadow-sm border"
-                style={{ height: "250px", overflowY: "auto" }}
+                style={{ height: "270px", overflowY: "auto" }}
               >
                 <h2 className="h5 mb-3">All Leads</h2>
                 <div className="d-flex flex-wrap gap-2">

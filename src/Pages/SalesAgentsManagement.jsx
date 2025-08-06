@@ -41,7 +41,9 @@ const SalesAgentManagement = () => {
                     <ul className="list-group mb-3">
                       {agents.map((agent) => (
                         <li key={agent._id} className="list-group-item">
-                          <strong>{agent.name}</strong> – {agent.email}
+                          <Link to={`/sales-agents/${agent._id}`} className="text-decoration-none text-dark">
+      <strong>{agent.name}</strong> – {agent.email}
+    </Link>
                         </li>
                       ))}
                     </ul>

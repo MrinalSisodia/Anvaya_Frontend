@@ -9,6 +9,9 @@ import LeadManagement from './Pages/LeadManagement.jsx';
 import LeadList from './Pages/LeadList.jsx';
 import SalesAgentManagement from "./Pages/SalesAgentsManagement.jsx";
 import LeadsByStatus from './Pages/LeadsByStatus.jsx';
+import ReportsScreen from './Pages/Reports.jsx';
+import SalesAgentView from './Pages/SalesAgentView.jsx';
+import SettingsPage from './Pages/SettingsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,10 @@ const router = createBrowserRouter([
        { path: '/lead/:id', element: <LeadManagement /> },
         { path: '/leads', element: <LeadList /> },
          { path: '/sales-agents', element: <SalesAgentManagement /> },
-         { path: '/leads-by-status', element: <LeadsByStatus /> }
+         { path: '/leads-by-status', element: <LeadsByStatus /> },
+          { path: '/reports', element: <ReportsScreen /> },
+          {path:'/sales-agents/:agentId',  element: <SalesAgentView />},
+           {path:'/settings',  element: <SettingsPage />}
     ]
   }
 ]);

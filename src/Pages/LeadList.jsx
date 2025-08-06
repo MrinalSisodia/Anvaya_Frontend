@@ -66,13 +66,20 @@ export default function LeadList() {
         <h1>Lead List</h1>
       </header>
       <main>
-        <div className="d-flex" style={{ height: "100%" }}>
-          <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
-            <p className="nav-item">
-              <i className="bi bi-arrow-left me-2"></i>
+        <div className="d-flex" style={{ minHeight: "100vh" }}>
+  <aside
+    className="bg-light p-3 border-end"
+    style={{
+      width: "200px",
+      minWidth: "200px",
+      flexShrink: 0,
+    }}
+  >
+ <p>
+  <i className="bi bi-arrow-left me-2"></i>
               <Link className="nav-link" to="/">Back to Dashboard</Link>
-            </p>
-          </div>
+ </p>
+  </aside>
 
           <div className="flex-grow-1 p-4 overflow-auto bg-light">
             <div className="container-fluid">
@@ -157,7 +164,7 @@ export default function LeadList() {
                           <tr
                             key={lead._id}
                             style={{ cursor: "pointer" }}
-                            onClick={() => navigate(`/leads/${lead._id}`)}
+                            onClick={() => navigate(`/lead/${lead._id}`)}
                           >
                             <td>{lead.name}</td>
                             <td>

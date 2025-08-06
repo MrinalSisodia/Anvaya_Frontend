@@ -114,8 +114,11 @@ const LeadContextProvider = ({ children }) => {
   const getLeadsByStatus = (status) =>
     allLeads.filter((lead) => lead.status === status);
 
-  const getLeadsByAgent = (agentId) =>
-    allLeads.filter((lead) => lead.salesAgent?._id === agentId);
+ const getLeadsByAgent = (agentId) =>
+  allLeads.filter((lead) =>
+    Array.isArray(lead.salesAgent) &&
+    lead.salesAgent.some((agent) => String(agent._id) === String(agentId))
+  );
 
   const getLeadById = (id) => allLeads.find((lead) => lead._id === id);
 
