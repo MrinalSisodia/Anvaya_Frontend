@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import LeadForm from "../Components/LeadForm";
 import { useLeadContext } from '../contexts/LeadContext';
-import Sidebar from '../contexts/Sidebar';
+import Sidebar from '../Components/Sidebar';
 import Modal from "../Components/Modal"
 
 export default function Dashboard() {
