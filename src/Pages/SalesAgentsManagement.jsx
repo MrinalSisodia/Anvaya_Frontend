@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Modal from "../Components/Modal";
-import SalesAgentForm from "../Components/SalesAgentForm";
+import Modal from "../components/Modal";
+import SalesAgentForm from "../components/SalesAgentForm";
 import { useState } from "react";
-import { useAgentContext } from "../Contexts/AgentContext";
+import { useAgentContext } from "../contexts/AgentContext";
 
 const SalesAgentManagement = () => {
   const [showForm, setShowForm] = useState(false);
