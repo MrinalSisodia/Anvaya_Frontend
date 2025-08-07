@@ -96,7 +96,7 @@ useEffect(() => {
     <>
       {/* Header */}
       <header className="bg-primary text-light p-3 sticky-top">
-        <h1 className="fs-4">Anvaya CRM Reports</h1>
+        <h1>Anvaya CRM Reports</h1>
       </header>
 
       <main>
@@ -116,12 +116,11 @@ useEffect(() => {
  </p>
   </aside>
 
-        {/* Content */}
+  
         <div className="flex-grow-1 p-4 overflow-auto">
           <div className="container">
-            <h2 className="mb-4">Report Overview</h2>
 
-            {/* Card 1 - Closed vs Pipeline */}
+        
             <div
               className="d-flex align-items-center justify-content-start gap-4 shadow-sm p-4 mb-4 bg-white rounded"
               style={{ minHeight: "300px" }}
@@ -137,7 +136,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Card 2 - Closed by Agent */}
             <div
               className="d-flex align-items-center justify-content-start gap-4 shadow-sm p-4 mb-4 bg-white rounded"
               style={{ minHeight: "300px" }}
@@ -172,7 +170,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Card 3 - Status Distribution */}
             <div
               className="d-flex align-items-center justify-content-start gap-4 shadow-sm p-4 mb-4 bg-white rounded"
               style={{ minHeight: "300px" }}

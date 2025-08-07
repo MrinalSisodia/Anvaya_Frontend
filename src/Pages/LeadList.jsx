@@ -34,7 +34,7 @@ export default function LeadList() {
     setSearchParams({});
   };
 
-  // Fetch leads based on URL filters
+
   useEffect(() => {
     const filters = {};
     if (statusFilter) filters.status = statusFilter;
@@ -43,11 +43,11 @@ export default function LeadList() {
     if (statusFilter || agentFilter) {
       fetchFilteredLeads(filters);
     } else {
-      fetchFilteredLeads(); // fallback to all leads
+      fetchFilteredLeads(); 
     }
   }, [statusFilter, agentFilter]);
 
-  // Apply sorting to filteredLeads
+  
   const displayLeads = useMemo(() => {
     let leads = [...filteredLeads];
     if (agentFilter) {
@@ -59,9 +59,12 @@ export default function LeadList() {
 }
 
 
-    if (sortOption === "priority") {
-      leads.sort((a, b) => a.priority.localeCompare(b.priority));
-    } else if (sortOption === "timeToClose") {
+     if (sortOption === "priority") {
+    const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+    leads.sort(
+      (a, b) => (priorityOrder[a.priority] || 99) - (priorityOrder[b.priority] || 99)
+    );
+  } else if (sortOption === "timeToClose") {
       leads.sort((a, b) => a.timeToClose - b.timeToClose);
     }
 
@@ -126,7 +129,7 @@ export default function LeadList() {
                   >
                     <option value="">Sort By</option>
                     <option value="priority">Priority</option>
-                    <option value="timeToClose">Time to Close</option>
+                    <option value="timeToClose">Time to Close(Ascending)</option>
                   </select>
 
                   <button

@@ -77,7 +77,7 @@ export default function SettingsPage() {
             <div className="container-fluid">
 
               <div className="accordion" id="settingsAccordion">
-                {/* Leads Accordion */}
+     
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingLeads">
                     <button
@@ -119,7 +119,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
 
-                {/* Sales Agents Accordion */}
+              
                 <div className="accordion-item mt-3">
                   <h2 className="accordion-header" id="headingAgents">
                     <button

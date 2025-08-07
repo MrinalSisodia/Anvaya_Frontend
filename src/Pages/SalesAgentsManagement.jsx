@@ -10,20 +10,26 @@ const SalesAgentManagement = () => {
 
   return (
     <>
-      <header className="bg-primary text-light p-3 sticky-top">
-        <h1 className="fs-4">Sales Agent Management</h1>
+        <header className="bg-primary text-light text-center p-3 sticky-top">
+        <h1>Sales Agent Management</h1>
       </header>
 
-      <main className="d-flex" style={{ height: "calc(100vh - 56px)" }}>
-        {/* Sidebar */}
-        <div className="bg-light p-3 border-end" style={{ width: "250px" }}>
-          <p className="nav-item">
-            <i className="bi bi-arrow-left me-2"></i>
-            <Link className="nav-link" to="/">Back to Dashboard</Link>
-          </p>
-        </div>
+      <main>
+         <div className="d-flex" style={{ minHeight: "100vh" }}>
+  <aside
+    className="bg-light p-3 border-end"
+    style={{
+      width: "200px",
+      minWidth: "200px",
+      flexShrink: 0,
+    }}
+  >
+ <p>
+  <i className="bi bi-arrow-left me-2"></i>
+              <Link className="nav-link" to="/">Back to Dashboard</Link>
+ </p>
+  </aside>
 
-        {/* Content */}
         <div className="flex-grow-1 p-3 bg-light">
           <div className="container-fluid">
             <div className="mb-3 p-3 bg-white rounded shadow-sm border text-start">
@@ -64,6 +70,7 @@ const SalesAgentManagement = () => {
               )}
             </div>
           </div>
+        </div>
         </div>
       </main>
     </>

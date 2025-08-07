@@ -11,38 +11,43 @@ export default function LeadsByStatus() {
   const [searchParams, setSearchParams] = useSearchParams();
   
 
-  // Get URL-based filters
   const agentFilter = searchParams.get("agent") || "";
   const priorityFilter = searchParams.get("priority") || "";
   const sort = searchParams.get("sort") || "none";
 
-  // Extract all agents and priorities
+
 
   const allPriorities = useMemo(() => {
     return Array.from(new Set(allLeads.map((lead) => lead.priority).filter(Boolean)));
   }, [allLeads]);
 
   const filterAndSortLeads = (leads) => {
-    let filtered = leads;
+  let filtered = leads;
 
-   if (agentFilter) {
-  filtered = filtered.filter((l) =>
-    Array.isArray(l.salesAgent)
-      ? l.salesAgent.some((agent) => agent._id === agentFilter)
-      : l.salesAgent?._id === agentFilter
-  );
-}
+  if (agentFilter) {
+    filtered = filtered.filter((l) =>
+      Array.isArray(l.salesAgent)
+        ? l.salesAgent.some((agent) => agent._id === agentFilter)
+        : l.salesAgent?._id === agentFilter
+    );
+  }
 
-    if (priorityFilter) {
-      filtered = filtered.filter((l) => l.priority === priorityFilter);
-    }
+  if (priorityFilter) {
+    filtered = filtered.filter((l) => l.priority === priorityFilter);
+  }
 
-    if (sort === "timeToClose") {
-      filtered = filtered.slice().sort((a, b) => (a.timeToClose || Infinity) - (b.timeToClose || Infinity));
-    }
+  if (sort.startsWith("timeToClose")) {
+    const sortOrder = sort === "timeToClose-desc" ? "desc" : "asc";
+    filtered = filtered.slice().sort((a, b) => {
+      const timeA = a.timeToClose ?? Infinity;
+      const timeB = b.timeToClose ?? Infinity;
+      return sortOrder === "asc" ? timeA - timeB : timeB - timeA;
+    });
+  }
 
-    return filtered;
-  };
+  return filtered;
+};
+
 
   const handleParamChange = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
@@ -95,7 +100,7 @@ export default function LeadsByStatus() {
                           aria-expanded={index === 0 ? "true" : "false"}
                           aria-controls={collapseId}
                         >
-                          {status} ({leads.length})
+                          {status}
                         </button>
                       </h2>
                       <div
@@ -136,14 +141,16 @@ export default function LeadsByStatus() {
                             </select>
 
                             <select
-                              className="form-select"
-                              style={{ width: 200 }}
-                              value={sort}
-                              onChange={(e) => handleParamChange("sort", e.target.value)}
-                            >
-                              <option value="none">Sort: None</option>
-                              <option value="timeToClose">Time to Close (asc)</option>
-                            </select>
+  className="form-select"
+  style={{ width: 200 }}
+  value={sort}
+  onChange={(e) => handleParamChange("sort", e.target.value)}
+>
+  <option value="none">Sort</option>
+  <option value="timeToClose">Time to Close (Ascending)</option>
+  <option value="timeToClose-desc">Time to Close (Descending)</option>
+</select>
+
                           </div>
 
                           {leads.length === 0 ? (

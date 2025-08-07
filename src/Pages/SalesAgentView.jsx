@@ -63,11 +63,11 @@ const SalesAgentView = () => {
         </p>
          </aside>
 
-          {/* Content */}
+        
           <div className="flex-grow-1 p-4 overflow-auto bg-light">
             <div className="container-fluid">
               <div className="bg-white rounded shadow-sm p-4 border">
-                {/* Agent Info */}
+      
                 {agentLoading ? (
                   <p>Loading agent data...</p>
                 ) : !agent ? (
@@ -79,7 +79,7 @@ const SalesAgentView = () => {
                   </>
                 )}
 
-                {/* Filters & Sorting */}
+             
                 <div className="d-flex flex-wrap align-items-center gap-3 mb-4">
                   <div>
                     <label className="form-label mb-1">Filter by Status:</label>
@@ -124,14 +124,14 @@ const SalesAgentView = () => {
                   </div>
                 </div>
 
-                {/* Lead List */}
+           
                 {leadLoading ? (
                   <p>Loading leads...</p>
                 ) : filteredAndSortedLeads.length === 0 ? (
                   <p>No matching leads for this agent.</p>
                 ) : (
                   <ul className="list-group">
-                    {/* Header Row */}
+               
 <li className="list-group-item d-flex fw-bold bg-light">
   <div className="col-4">Lead Name</div>
   <div className="col-2">Priority</div>

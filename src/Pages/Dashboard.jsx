@@ -26,7 +26,6 @@ export default function Dashboard() {
     setIsLeadModalOpen(true);
   };
 
-  // Fetch leads when status param changes
   useEffect(() => {
     const filters = {};
     const status = searchParams.get("status");
@@ -68,7 +67,7 @@ export default function Dashboard() {
             <div className="container-fluid">
               <div
                 className="mb-4 p-3 bg-white rounded shadow-sm border"
-                style={{ height: "270px", overflowY: "auto" }}
+                style={{ height: "250px", overflowY: "auto" }}
               >
                 <h2 className="h5 mb-3">All Leads</h2>
                 <div className="d-flex flex-wrap gap-3">
@@ -81,7 +80,7 @@ export default function Dashboard() {
                       <div
                         key={lead._id}
                         className="border rounded p-2 shadow-sm bg-light"
-                        style={{ width: "210px", fontSize: "0.9rem" }}
+                        style={{ width: "200px", fontSize: "0.9rem" }}
                       >
                         <Link to={`/lead/${lead._id}`} className="text-decoration-none text-dark">
                           <strong>{lead.name}</strong>
