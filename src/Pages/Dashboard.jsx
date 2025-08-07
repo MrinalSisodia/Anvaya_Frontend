@@ -80,7 +80,7 @@ export default function Dashboard() {
                       <div
                         key={lead._id}
                         className="border rounded p-2 shadow-sm bg-light"
-                        style={{ width: "200px", fontSize: "0.9rem" }}
+                        style={{ width: "210px", fontSize: "0.9rem" }}
                       >
                         <Link to={`/lead/${lead._id}`} className="text-decoration-none text-dark">
                           <strong>{lead.name}</strong>
