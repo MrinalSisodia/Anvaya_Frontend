@@ -156,7 +156,7 @@ export default function LeadsByStatus() {
                           {leads.length === 0 ? (
                             <p>No leads under "{status}" with current filters.</p>
                           ) : (
-                            <div className="d-flex flex-wrap gap-3">
+                            <div className="d-flex flex-wrap gap-5">
                               {leads.map((lead) => (
                                 <div
                                   key={lead._id}

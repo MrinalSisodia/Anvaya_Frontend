@@ -107,7 +107,7 @@ export default function Dashboard() {
                 </div>
 
                 <p className="mt-3 mb-2 text-start">Quick Filters:</p>
-                <div className="d-flex flex-wrap gap-3">
+                <div className="d-flex flex-wrap gap-5">
                   {statusOptions.map((status) => (
                     <div key={status.value} className="form-check form-check-inline">
                       <input
