@@ -1,15 +1,8 @@
 const Modal = ({ title, onClose, children }) => {
-  const handleBackdropClick = (e) => {
-    if (e.target.classList.contains("modal-backdrop-custom")) {
-      onClose?.();
-    }
-  };
-
   return (
     <div
       className="modal-backdrop-custom position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1050 }}
-      onClick={handleBackdropClick}
     >
       <div
         className="modal-dialog modal-dialog-centered"

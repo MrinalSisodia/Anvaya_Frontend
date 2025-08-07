@@ -50,6 +50,14 @@ export default function LeadList() {
   // Apply sorting to filteredLeads
   const displayLeads = useMemo(() => {
     let leads = [...filteredLeads];
+    if (agentFilter) {
+  leads = leads.filter((l) =>
+    Array.isArray(l.salesAgent)
+      ? l.salesAgent.some((agent) => agent._id === agentFilter)
+      : l.salesAgent?._id === agentFilter
+  );
+}
+
 
     if (sortOption === "priority") {
       leads.sort((a, b) => a.priority.localeCompare(b.priority));
