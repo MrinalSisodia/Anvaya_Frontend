@@ -94,13 +94,11 @@ useEffect(() => {
 
   return (
     <>
-      {/* Header */}
       <header className="bg-primary text-light p-3 sticky-top">
         <h1>Anvaya CRM Reports</h1>
       </header>
 
       <main>
-        {/* Sidebar */}
          <div className="d-flex" style={{ minHeight: "100vh" }}>
   <aside
     className="bg-light p-3 border-end"

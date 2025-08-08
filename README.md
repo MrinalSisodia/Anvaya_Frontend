@@ -1,12 +1,100 @@
-# React + Vite
+# Lead Management CRM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack lead management app where you can view, manage, add and edit leads.  
+Built with a React frontend, Express/Node backend, MongoDB database.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo Link
 
-## Expanding the ESLint configuration
+[Live Demo](https://anvaya-frontend-pi.vercel.app/)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+
+## Quick Start
+
+```
+git clone https://github.com/MrinalSisodia/Anvaya_Frontend.git
+cd <Anvaya_Frontend>
+npm install
+npm run dev
+```
+
+## Technologies
+- React JS
+- React Router
+- Node.js
+- Express
+- MongoDB
+
+## Demo Video
+Watch a walkthrough of all major features of this app:
+[Youtube Video Link](https://youtu.be/wfA3g3_RW8Q)
+
+## Features
+**Dashboard**
+- Displays a list of all leads
+- Quick filters to view leads filtered by status
+
+**Leads List**
+- Leads list with all important details highlighted
+- “Add New Lead” button opens a form
+- Filter & sort leads by sales agent, status, priority, tags & time to close
+
+
+**Lead Management**
+- View full lead information (source, sales agent, status, priority)
+- “Edit Lead” opens a form to update any field for the lead 
+- Comments section to post comments & view posted comments
+
+**Agents**
+- View list of all agents
+- Each agent can be clicked to view the sales agent view page- view all leads for the agent
+
+**Leads By Status**
+- View Leads organised by Status
+-Filter & sort leads by sales agent, priority & time to close
+
+**Settings**
+- Delete leads & sales agents
+
+**Reports** 
+- Reporting charts for quick visualization of data
+- Closed leads vs in pipeline (Pie chart)
+- Leads closed by agents (Bar graph)
+- Leads categorized by status (Pie Chart)
+
+
+## API Reference 
+- api - https://anvaya-backend-nine.vercel.app
+
+### **GET	/api/leads**<br>	 
+List all leads<br>	 
+Sample Response:<br>
+```[{_id, name, source, salesAgent:[{"_id","name"}, ...], status, tags:[], timeToClose, priority, createdAt, closedAt}, …]```
+
+### **GET	/api/leads/:id/comments**<br>	 	
+Get comments for one lead<br>		
+Sample Response:<br>
+```[{ id, commentText, author,}, ...]```
+
+### **GET	/api/sales-agents**<br>	 
+List all agents<br>	 
+Sample Response:<br>
+``` [{_id, name,email}, ...]```
+
+### **POST	/api/leads**<br> 	
+Create a new lead<br>	
+
+### **POST	/api/sales-agents**<br>  	
+Register a new agent<br> 	
+
+### **GET	/api/report**<br>	 
+List reports with /summary OR  /status-distribution OR /by-agents <br>	 
+Sample Response:<br>
+```{closedLastWeek, pipelineLeads} ```
+
+
+## Contact
+For bugs or feature requests, please reach out to mrinalsisoida28@gmail.com
